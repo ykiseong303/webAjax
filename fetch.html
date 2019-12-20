@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="button" value="fetch" onclick="
+      fetch('html').then(function(response){
+        response.text().then(function(text){
+          alert(text);
+        })
+      })
+    ">
+    <script type="text/javascript">
+      function callback() {
+        console.log('response end');
+      }
+    </script>
+    <input type="button" value="fetch2" onclick="
+      // 익명함수로 then 실행 
+      // response는 fetch를 통해서 요청을 했을 때 웹서버가 응답한 결과를 담고있는 객체
+      /*
+        response.text().then(function(text){
+          // do something with the text response
+        })
+      */
+      fetch('html').then(function(response){
+        console.log(response.text());
+        if(response.status =='404') {
+          alert('Not found');
+        }
+        else{
+          console.log(response.text());
+          document.querySelector('article').innerHTML = response.text();
+        }
+      });
+    ">
+
+    <input type="button" value="fetch3" onclick="
+      fetch('html').then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
+      })
+    ">
+
+    <input type="button" value="fetch4" onclick="
+      fetch('html').then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
+      })
+    ">
+    <article>
+
+    </article>
+  </body>
+</html>
